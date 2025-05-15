@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClockComponent implements OnInit {
   time: string = '';
+  errorMessage: string = '';
 
   ngOnInit(): void {
       this.updateTime();
@@ -17,15 +18,28 @@ export class ClockComponent implements OnInit {
   }
 
   updateTime(): void {
-    const now = new Date();
+    try{
+       const now = new Date();
     const hours = this.addZero(now.getHours());
     const minutes = this.addZero(now.getMinutes());
     const seconds = this.addZero(now.getSeconds());
     this.time = `${hours}:${minutes}:${seconds}`;
-
+ }catch(error){
+  this.errorMessage = 'error al gargar la hora';
+  console.error('error al cargar la hora', error);
+ }
   }
+
+
   addZero(num: number): string {
-      return num < 10 ? '0' + num : num.toString();
+    try{
+        return num < 10 ? '0' + num : num.toString();
+    }catch (error){
+      this.errorMessage = 'error al agregar el cero';
+      console.error('error al agregar el cero', error);
+      return num.toString();
     }
+    }
+
 
 }
