@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-clock',
   imports: [],
   templateUrl: './clock.component.html',
-  styleUrl: './clock.component.css'
+styleUrls: ['./clock.component.css']
 })
 export class ClockComponent implements OnInit {
   time: string = '';
