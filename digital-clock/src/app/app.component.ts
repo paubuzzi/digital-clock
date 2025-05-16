@@ -4,7 +4,7 @@ import { ClockComponent } from "./components/clock/clock.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ClockComponent],
+  imports: [ ClockComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
@@ -6,15 +6,22 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './clock.component.html',
 styleUrls: ['./clock.component.css']
 })
-export class ClockComponent implements OnInit {
+export class ClockComponent implements OnInit, OnDestroy {
   time: string = '';
   errorMessage: string = '';
+  intervalId: number | undefined;
 
   ngOnInit(): void {
       this.updateTime();
-      setInterval(() => {
+      this.intervalId = window.setInterval(() => {
         this.updateTime();
       }, 1000)
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId !== undefined) {
+      clearInterval(this.intervalId);
+    }
   }
 
   updateTime(): void {
